@@ -1,5 +1,5 @@
 #FROM openjdk:8-alpine
-FROM gitlab-registry.cern.ch/industrial-controls/sw-infra/cc7-oraclejava:8.0.2
+FROM gitlab-registry.cern.ch/industrial-controls/sw-infra/cc7-oraclejava:latest
 MAINTAINER pablogo
 
 # Setup useful environment variables
