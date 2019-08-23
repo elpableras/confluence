@@ -29,12 +29,10 @@ Example HTTPS:
 *  Poxy Protocol Scheme: https
 
 ### MySQL
-Let's take an MySQL container and set it up:
 
-MySQL Official Docker Image
+On [DB On Demand](https://dbod.web.cern.ch/) you can ask for a DB for your apps.
 
 Now start the Confluence container and let it use the container. On first startup you have to configure your Confluence yourself and fill it with a test license.
-
 
 1.  Choose Production Installation because we have a mysql!
 2.  Enter license information
