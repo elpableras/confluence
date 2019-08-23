@@ -30,7 +30,9 @@ Example HTTPS:
 
 ### MySQL
 
-On [DB On Demand](https://dbod.web.cern.ch/) you can ask for a DB for your apps.
+On [DB On Demand](https://resources.web.cern.ch/resources/Manage/DbOnDemand/Resources.aspx) you can ask for a DB for your apps.
+
+[Administration Panel](https://dbod.web.cern.ch)
 
 Now start the Confluence container and let it use the container. On first startup you have to configure your Confluence yourself and fill it with a test license.
 
