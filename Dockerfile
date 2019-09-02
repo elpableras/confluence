@@ -50,7 +50,7 @@ RUN set -x \
     && touch -d "@0"           "${CONF_INSTALL}/conf/server.xml" 
 
 RUN set -x \
-    && sed -i                             's/export CATALINA_OPTS/CATALINA_OPTS="-Dconfluence.upgrade.recovery.file.enabled=false -Dconfluence.clickjacking.protection.disable=true -server -Xms1536m -Xmx4536m -XX:NewSize=256m -XX:MaxNewSize=256m -XX:+DisableExplicitGC ${CATALINA_OPTS}"\n\n\nexport CATALINA_OPTS/' "${CONF_INSTALL}/bin/setenv.sh" \
+    && sed -i                             's/export CATALINA_OPTS/CATALINA_OPTS="-Dconfluence.upgrade.recovery.file.enabled=false -Dconfluence.clickjacking.protection.disable=true ${CATALINA_OPTS} -server -Xms1536m -Xmx6144m -XX:NewSize=256m -XX:MaxNewSize=256m -XX:+DisableExplicitGC"\n\n\nexport CATALINA_OPTS/' "${CONF_INSTALL}/bin/setenv.sh" \
     && touch -d "@0"                      "${CONF_INSTALL}/bin/setenv.sh"
 
 # Expose default HTTP connector port.
@@ -59,7 +59,7 @@ EXPOSE 8090 8091
 # Set volume mount points for installation and home directory. Changes to the
 # home directory needs to be persisted as well as parts of the installation
 # directory due to eg. logs.
-#VOLUME ["/var/atlassian/confluence"]
+#VOLUME ["${CONF_HOME}"]
 
 # Set the default working directory as the Confluence home directory.
 WORKDIR /var/atlassian/confluence
