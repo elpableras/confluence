@@ -3,6 +3,10 @@ This is a containerized installation of Atlassian Confluence with Docker, and it
 
 *  [Atlassian Confluence](https://cptactionhank.github.io/docker-atlassian-confluence)
 
+## Links Application
+*  [Test-Confluence](https://test-confluence-it.web.cern.ch)
+*  [OpenShift](https://openshift-dev.cern.ch/console/project/test-confluence-it/overview)
+
 ## Supported Tags And Respective Dockerfile Links
 | Product | Version | Tags | Dockerfile |
 | ------ | ------ | ------ | ------ |
@@ -11,11 +15,6 @@ This is a containerized installation of Atlassian Confluence with Docker, and it
 
 
 ## Setup
-
-1.  Proxy Configuration
-2.  Start the database container
-2.  Start Confluence
-3.  Setup Confluence
 
 ### Proxy Configuration
 You can specify your proxy host and proxy port with the environment variables *PROXY_NAME* and *PROXY_PORT*. The value will be set inside the Atlassian server.xml at startup!
@@ -135,3 +134,46 @@ Now start the Confluence container and let it use the container. On first startu
     9.  Username. This is the username of your dedicated database user. In the example above, this is confluenceuser.
     10.	Password. This is the password for your dedicated database user.
 11.	Test your database connection
+
+## LDAP
+
+### Configure LDAP User Directory
+
+Server Settings:
+* Name: Delegated LDAP Authentication
+* Directory Type: Microsoft Activie Directory
+* Hostname: cerndc.cern.ch
+* Port: 636 use SSL
+* Username: username@cern.ch
+* Password: *********
+
+LDAP Schema:
+* Base DN: dc=cern,dc=ch
+* Additional User DN: OU=Users,OU=Organic Units
+* Additional Group DN: OU=e-groups,OU=Workgroups
+
+Advanced Settings:
+* Unchecked "Follow Referrals"
+
+[Others filters](https://twiki.cern.ch/twiki/pub/Sandbox/CmsBrmLabServerConfiguration/ldap.conf)
+
+## New CERN SSO (SAML)
+
+### Keycloak
+[The Security Assertion Markup Language (SAML)](https://authzsvc-docs.web.cern.ch/user-documentation/saml/config/).
+
+1. Register your application to get the token: [here](https://application-portal.web.cern.ch) --> You create the callbackfor confluence
+    * [Users](https://users-portal.web.cern.ch/)
+    * [Groups](https://groups-portal.web.cern.ch)
+2. Create the differents roles that you will need on confluence: confluence-administrators and confluence-users for example.
+
+### OAuth/OpenID Client
+To use the new SSO on confluence you need to install the plugin: OAuth/OpenID Client for Confluence SSO
+
+Configuration 
+* Application: Keycloak
+* Client ID: Application Identifier, that you created before on [https://application-portal.web.cern.ch](https://application-portal.web.cern.ch)
+* Client Secret: token, that you created before on [https://application-portal.web.cern.ch](https://application-portal.web.cern.ch)
+* Host Name: https://keycloak.cern.ch
+* Realm Name: master
+* Endpoint: 
