@@ -157,10 +157,10 @@ Advanced Settings:
 
 [Others filters](https://twiki.cern.ch/twiki/pub/Sandbox/CmsBrmLabServerConfiguration/ldap.conf)
 
-## New CERN SSO (SAML)
+## New CERN SSO (OIDC)
 
 ### Keycloak
-[The Security Assertion Markup Language (SAML)](https://authzsvc-docs.web.cern.ch/user-documentation/saml/config/).
+[OpenID Connect (OIDC)](https://authzsvc-docs.web.cern.ch/user-documentation/oidc/config/).
 
 1. Register your application to get the token: [here](https://application-portal.web.cern.ch) --> You create the callbackfor confluence
     * [Users](https://users-portal.web.cern.ch/)
